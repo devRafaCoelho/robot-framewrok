@@ -1,0 +1,80 @@
+{
+    "register": {
+        "user": {
+            "firstName": "João",
+            "lastName": "Silva",
+            "email": "joao@email.com",
+            "cpf": "84769371055",
+            "phone": "+5511987654321",
+            "password": "senha123",
+            "confirmPassword": "senha123"
+        },
+        "userCpf": {
+            "firstName": "João",
+            "lastName": "Silva",
+            "email": "joao2@email.com",
+            "cpf": "84769371055",
+            "phone": "+5511987654321",
+            "password": "senha123",
+            "confirmPassword": "senha123"
+        }
+    },
+    "login": {
+        "user": {
+            "firstName": "Maria",
+            "lastName": "Santos",
+            "email": "maria@email.com",
+            "cpf": "98034727040",
+            "phone": "+5511888888888",
+            "password": "senha456",
+            "confirmPassword": "senha456"
+        }
+    },
+    "update": {
+        "user": {
+            "firstName": "Carlos",
+            "lastName": "Rodrigues",
+            "email": "carlos@email.com",
+            "cpf": "06069110064",
+            "phone": "+5511777777777",
+            "password": "senha789",
+            "confirmPassword": "senha789"
+        },
+        "userDuplicate": {
+            "firstName": "Pedro",
+            "lastName": "Ferreira",
+            "email": "pedro@email.com",
+            "cpf": "79620461045",
+            "phone": "+5511999999999",
+            "password": "senha123",
+            "confirmPassword": "senha123"
+        }
+    },
+    "newPassword": {
+        "user": {
+            "firstName": "Ana",
+            "lastName": "Silva",
+            "email": "ana@email.com",
+            "cpf": "08735257016",
+            "phone": "+5511999999999",
+            "password": "senha123",
+            "confirmPassword": "senha123"
+        },
+        "new": {
+            "password": "senha123",
+            "newPassword": "senha456",
+            "confirmNewPassword": "senha456"
+        }
+    },
+    "delete": {
+        "user": {
+            "firstName": "Luisa",
+            "lastName": "Mendes",
+            "email": "luisa@email.com",
+            "cpf": "07191871091",
+            "phone": "+5511999888777",
+            "password": "senha789",
+            "confirmPassword": "senha789"
+        }
+    }
+}
