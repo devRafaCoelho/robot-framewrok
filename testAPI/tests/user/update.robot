@@ -61,7 +61,7 @@ Should not be able to edit logged-in user data for an email already registered
 
     ${user}    Change field value    ${data}    email    ${data}[userDuplicate][email]
     Remove From Dictionary    ${user}    confirmPassword
-    Update user error    ${user}    400    E-mail já cadastrado.
+    Update user error    ${user}    400    E-mail already registered.
 
 Should not be able to edit logged-in user data for an cpf already registered
     [Tags]    error    existing_cpf
@@ -78,7 +78,7 @@ Should not be able to edit logged-in user data for an cpf already registered
 
     ${user}    Change field value    ${data}    cpf    ${data}[userDuplicate][cpf]
     Remove From Dictionary    ${user}    confirmPassword
-    Update user error    ${user}    400    CPF já cadastrado.
+    Update user error    ${user}    400    CPF already registered.
 
 Should not be able to edit logged-in user data for an invalid password
     [Tags]    error    invalid_password
@@ -91,7 +91,7 @@ Should not be able to edit logged-in user data for an invalid password
 
     ${user}    Change field value    ${data}    password    senha123
     Remove From Dictionary    ${user}    confirmPassword
-    Update user error    ${user}    400    Senha inválida.
+    Update user error    ${user}    400    Invalid password.
 
 Required Fields
     [Tags]    error    required
@@ -101,10 +101,10 @@ Required Fields
     @{required_list}    Set Variable    firstName    lastName    email    password
 
     @{name_message_list}    Set Variable
-    ...    Primeiro Nome
-    ...    Último Nome
-    ...    Email
-    ...    Senha
+    ...    first name
+    ...    last name
+    ...    e-mail
+    ...    password
 
     FOR    ${element}    IN    @{required_list}
         ${user}    Copy Dictionary    ${data}[user]
@@ -115,9 +115,9 @@ Required Fields
         ${name_message}    Get From List    ${name_message_list}    ${index}
 
         IF    '${element}' == 'password'
-            ${message}    Set Variable    A Senha é obrigatória.
+            ${message}    Set Variable    The password is required.
         ELSE
-            ${message}    Set Variable    O ${name_message} é obrigatório.
+            ${message}    Set Variable    The ${name_message} is required.
         END
 
         Do login    ${data}[user]

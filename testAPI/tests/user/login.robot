@@ -21,7 +21,7 @@ Should not be able to log in with an unregistered email
     ${user}    Change field value    ${data}    email    email@email.com
 
     Remove user from database    email    ${user}[email]
-    Do login error    ${user}    400    E-mail ou Senha inválidos.
+    Do login error    ${user}    400    Invalid e-mail or password.
 
 Should not be able to log in with an invalid email
     [Tags]    error    invalid_email
@@ -30,7 +30,7 @@ Should not be able to log in with an invalid email
     ${user}    Change field value    ${data}    email    email@email
 
     Remove user from database    email    ${user}[email]
-    Do login error    ${user}    400    O Email precisa ser válido.
+    Do login error    ${user}    400    The e-mail must be valid.
 
 Should not be able to log in with an incorrect password
     [Tags]    error    incorrect_password
@@ -41,7 +41,7 @@ Should not be able to log in with an incorrect password
 
     ${user}    Change field value    ${data}    password    senha1234
 
-    Do login error    ${user}    400    E-mail ou Senha inválidos.
+    Do login error    ${user}    400    Invalid e-mail or password.
 
 Should not be able to log in with an invalid password
     [Tags]    error    invalid_password
@@ -55,7 +55,7 @@ Should not be able to log in with an invalid password
         Set To Dictionary    ${user}    password=${password}
         Set To Dictionary    ${user}    confirmPassword=${password}
 
-        Do login error    ${user}    400    A Senha precisa conter, no mínimo, 5 caracteres.
+        Do login error    ${user}    400    The password must contain at least 5 characters.
     END
 
 Required Fields
@@ -66,8 +66,8 @@ Required Fields
     @{required_list}    Set Variable    email    password
 
     @{name_message_list}    Set Variable
-    ...    Email
-    ...    Senha
+    ...    e-mail
+    ...    password
 
     FOR    ${element}    IN    @{required_list}
         ${user}    Copy Dictionary    ${data}[user]
@@ -77,9 +77,9 @@ Required Fields
         ${name_message}    Get From List    ${name_message_list}    ${index}
 
         IF    '${element}' == 'password'
-            ${message}    Set Variable    A Senha é obrigatória.
+            ${message}    Set Variable    The password is required.
         ELSE
-            ${message}    Set Variable    O ${name_message} é obrigatório.
+            ${message}    Set Variable    The ${name_message} is required.
         END
 
         Do login error    ${user}    400    ${message}

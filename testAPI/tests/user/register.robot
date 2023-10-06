@@ -5,7 +5,7 @@ Resource    ../../resources/main.resource
 
 *** Test Cases ***
 Must be able to register a new user
-    [Tags]    success
+    [Tags]    successs
 
     ${data}    Get data    user    register
 
@@ -38,7 +38,7 @@ Registration with duplicate email should not be allowed
     Remove user from database    email    ${data}[user][email]
     Insert user into database    ${data}[user]
 
-    Register user error    ${data}[user]    400    E-mail já cadastrado.
+    Register user error    ${data}[user]    400    E-mail already registered.
 
 Registration with duplicate cpf should not be allowed
     [Tags]    error    duplicate_cpf
@@ -48,7 +48,7 @@ Registration with duplicate cpf should not be allowed
     Remove user from database    cpf    ${data}[user][cpf]
     Insert user into database    ${data}[user]
 
-    Register user error    ${data}[userCpf]    400    CPF já cadastrado.
+    Register user error    ${data}[userCpf]    400    CPF already registered.
 
 Should not register with an incorrect email
     [Tags]    error    invalid_email
@@ -57,7 +57,7 @@ Should not register with an incorrect email
     ${user}    Change field value    ${data}    email    email@email
 
     Remove user from database    email    ${data}[user][email]
-    Register user error    ${user}    400    O Email precisa ser válido.
+    Register user error    ${user}    400    The e-mail must be valid.
 
 Should not register with an incorrect cpf
     [Tags]    error    invalid_cpf
@@ -66,7 +66,7 @@ Should not register with an incorrect cpf
     ${user}    Change field value    ${data}    cpf    12345678910
 
     Remove user from database    cpf    ${data}[user][cpf]
-    Register user error    ${user}    400    CPF inválido
+    Register user error    ${user}    400    Invalid CPF.
 
 Should not register with an incorrect password
     [Tags]    error    invalid_password
@@ -80,7 +80,7 @@ Should not register with an incorrect password
         Set To Dictionary    ${user}    password=${password}
         Set To Dictionary    ${user}    confirmPassword=${password}
 
-        Register user error    ${user}    400    A Senha precisa conter, no mínimo, 5 caracteres.
+        Register user error    ${user}    400    The password must contain at least 5 characters.
     END
 
 Should not be able to register with different passwords
@@ -90,7 +90,7 @@ Should not be able to register with different passwords
     ${user}    Change field value    ${data}    confirmPassword    senha1234
 
     Remove user from database    email    ${data}[user][email]
-    Register user error    ${user}    400    As senhas não coincidem.
+    Register user error    ${user}    400    The passwords do not match.
 
 Required Fields
     [Tags]    error    required
@@ -100,10 +100,10 @@ Required Fields
     @{required_list}    Set Variable    firstName    lastName    email    password
 
     @{name_message_list}    Set Variable
-    ...    Primeiro Nome
-    ...    Último Nome
-    ...    Email
-    ...    Senha
+    ...    first name
+    ...    last name
+    ...    e-mail
+    ...    password
 
     FOR    ${element}    IN    @{required_list}
         ${user}    Copy Dictionary    ${data}[user]
@@ -113,9 +113,9 @@ Required Fields
         ${name_message}    Get From List    ${name_message_list}    ${index}
 
         IF    '${element}' == 'password'
-            ${message}    Set Variable    A Senha é obrigatória.
+            ${message}    Set Variable    The password is required.
         ELSE
-            ${message}    Set Variable    O ${name_message} é obrigatório.
+            ${message}    Set Variable    The ${name_message} is required.
         END
 
         Register user error    ${user}    400    ${message}
